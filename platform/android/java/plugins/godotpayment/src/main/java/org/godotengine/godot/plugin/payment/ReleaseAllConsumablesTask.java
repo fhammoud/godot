@@ -34,19 +34,20 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+
 import com.android.vending.billing.IInAppBillingService;
+
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 abstract public class ReleaseAllConsumablesTask {
-
 	private Context context;
 	private IInAppBillingService mService;
 
 	private static class ReleaseAllConsumablesAsyncTask extends AsyncTask<String, String, String> {
-
 		private WeakReference<ReleaseAllConsumablesTask> mTask;
 		private String mSku;
 		private String mReceipt;
@@ -91,7 +92,6 @@ abstract public class ReleaseAllConsumablesTask {
 			Bundle bundle = mService.getPurchases(3, context.getPackageName(), "inapp", null);
 
 			if (bundle.getInt("RESPONSE_CODE") == 0) {
-
 				final ArrayList<String> myPurchases = bundle.getStringArrayList("INAPP_PURCHASE_DATA_LIST");
 				final ArrayList<String> mySignatures = bundle.getStringArrayList("INAPP_DATA_SIGNATURE_LIST");
 
@@ -103,7 +103,6 @@ abstract public class ReleaseAllConsumablesTask {
 
 				//Log.d("godot", "# products to be consumed:" + myPurchases.size());
 				for (int i = 0; i < myPurchases.size(); i++) {
-
 					try {
 						String receipt = myPurchases.get(i);
 						JSONObject inappPurchaseData = new JSONObject(receipt);

@@ -33,6 +33,7 @@ package org.godotengine.godot.plugin.payment.utils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
@@ -41,7 +42,6 @@ import org.apache.http.message.BasicNameValuePair;
  * @author Luis Linietsky <luis.linietsky@gmail.com>
  */
 public class RequestParams {
-
 	private HashMap<String, String> params;
 	private String url;
 

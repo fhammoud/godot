@@ -32,11 +32,11 @@ package org.godotengine.godot.plugin.payment;
 
 import android.app.Activity;
 import android.content.Intent;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 abstract public class HandlePurchaseTask {
-
 	private Activity context;
 
 	public HandlePurchaseTask(Activity context) {

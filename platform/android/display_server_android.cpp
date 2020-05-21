@@ -155,12 +155,12 @@ bool DisplayServerAndroid::screen_is_touchscreen(int p_screen) const {
 	return true;
 }
 
-void DisplayServerAndroid::virtual_keyboard_show(const String &p_existing_text, const Rect2 &p_screen_rect, int p_max_length) {
+void DisplayServerAndroid::virtual_keyboard_show(const String &p_existing_text, const Rect2 &p_screen_rect, int p_max_length, int p_cursor_start, int p_cursor_end) {
 	GodotIOJavaWrapper *godot_io_java = OS_Android::get_singleton()->get_godot_io_java();
 	ERR_FAIL_COND(!godot_io_java);
 
 	if (godot_io_java->has_vk()) {
-		godot_io_java->show_vk(p_existing_text, p_max_length);
+		godot_io_java->show_vk(p_existing_text, p_max_length, p_cursor_start, p_cursor_end);
 	} else {
 		ERR_PRINT("Virtual keyboard not available");
 	}
@@ -493,7 +493,6 @@ void DisplayServerAndroid::process_touch(int p_what, int p_pointer, const Vector
 			if (touch.size()) {
 				//end all if exist
 				for (int i = 0; i < touch.size(); i++) {
-
 					Ref<InputEventScreenTouch> ev;
 					ev.instance();
 					ev->set_index(touch[i].id);
@@ -511,7 +510,6 @@ void DisplayServerAndroid::process_touch(int p_what, int p_pointer, const Vector
 
 			//send touch
 			for (int i = 0; i < touch.size(); i++) {
-
 				Ref<InputEventScreenTouch> ev;
 				ev.instance();
 				ev->set_index(touch[i].id);
@@ -525,10 +523,8 @@ void DisplayServerAndroid::process_touch(int p_what, int p_pointer, const Vector
 			ERR_FAIL_COND(touch.size() != p_points.size());
 
 			for (int i = 0; i < touch.size(); i++) {
-
 				int idx = -1;
 				for (int j = 0; j < p_points.size(); j++) {
-
 					if (touch[i].id == p_points[j].id) {
 						idx = j;
 						break;
@@ -554,7 +550,6 @@ void DisplayServerAndroid::process_touch(int p_what, int p_pointer, const Vector
 			if (touch.size()) {
 				//end all if exist
 				for (int i = 0; i < touch.size(); i++) {
-
 					Ref<InputEventScreenTouch> ev;
 					ev.instance();
 					ev->set_index(touch[i].id);
@@ -586,7 +581,6 @@ void DisplayServerAndroid::process_touch(int p_what, int p_pointer, const Vector
 		case 4: { // remove touch
 			for (int i = 0; i < touch.size(); i++) {
 				if (touch[i].id == p_pointer) {
-
 					Ref<InputEventScreenTouch> ev;
 					ev.instance();
 					ev->set_index(touch[i].id);

@@ -33,6 +33,7 @@ package org.godotengine.godot;
 import android.app.Activity;
 import android.hardware.SensorEvent;
 import android.view.Surface;
+
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
@@ -40,7 +41,6 @@ import javax.microedition.khronos.opengles.GL10;
  * Wrapper for native library
  */
 public class GodotLib {
-
 	public static GodotIO io;
 
 	static {

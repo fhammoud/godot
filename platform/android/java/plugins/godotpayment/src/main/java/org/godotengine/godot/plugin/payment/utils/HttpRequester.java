@@ -30,9 +30,12 @@
 
 package org.godotengine.godot.plugin.payment.utils;
 
+import org.godotengine.godot.utils.Crypt;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -40,6 +43,7 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.security.KeyStore;
 import java.util.Date;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpVersion;
 import org.apache.http.client.ClientProtocolException;
@@ -61,14 +65,12 @@ import org.apache.http.params.HttpParams;
 import org.apache.http.params.HttpProtocolParams;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
-import org.godotengine.godot.utils.Crypt;
 
 /**
  *
  * @author Luis Linietsky <luis.linietsky@gmail.com>
  */
 public class HttpRequester {
-
 	private Context context;
 	private static final int TTL = 600000; // 10 minutos
 	private long cttl = 0;
